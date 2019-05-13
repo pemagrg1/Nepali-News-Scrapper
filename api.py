@@ -8,15 +8,6 @@ app = Flask(__name__)
 app.debug = True
 
 
-# app.run(debug=True,host="0.0.0.0")
-def verify_token(password):
-    passw = 'bigmmyzioopied1234876'
-    if password == passw:
-        return True
-
-    return False
-
-
 @app.route('/')
 def load_home():
     return render_template("home.html")
