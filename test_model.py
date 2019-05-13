@@ -1,8 +1,8 @@
 
 from models.newspaper.newspaper import Article
 # url = ""
-url = 'http://fox13now.com/2013/12/30/new-year-new-laws-obamacare-pot-guns-and-drones/'
-lang = "en"
+url = 'https://www.onlinekhabar.com/2019/05/765579'
+lang = "ne"
 article = Article(url, language=lang)
 article.download()
 article.parse()
