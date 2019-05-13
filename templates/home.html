@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Text Scraping</title>
+    <script>
+
+    function myFunction() {
+    var url= $('#textboxid').val();
+    console.log(url);
+      $.ajax({
+                  url: "/analyse_web",
+                  type: "POST",
+                  data: {url:url}
+
+              }).done(function(response) {
+                $(".show-data").html('');
+                console.log(response.result)
+
+                var html= "<br><br><br><center>Automatic Text Scraping</center><br><br><table>";
+                response =response;
+                html+="<tr><td>Article URL</td><td>"+response.result.url+"</td></tr>"
+                html+="<tr><td>DATE</td><td>"+response.result.DATE+"</td></tr>"
+                html+="<tr><td>TITLE</td><td>"+response.result.TITLE+"</td></tr>"
+                html+="<tr><td>TEXT</td><td>"+response.result.TEXT+"</td></tr>"
+                html+="<tr><td>img_url</td><td>"+response.result.img_url+"</td></tr>"
+                html+="<tr><td>author</td><td>"+response.result.author+"</td></tr>"
+                html+="<tr><td>video</td><td>"+response.result.video+"</td></tr>"
+                html +="</table>";
+                $(".show-data").append(html);
+                });
+    };
+    </script>
+    <style>
+    table{
+        border: 2px solid black;
+        margin-left: 10%;
+        margin-right: 10%;
+        }
+    td  {
+      border: 1px solid black;
+    }
+
+    </style>
+</head>
+<body>
+   <div class="search">
+           <h3>Scrape URL!</h3>
+          <input type="text"  class="searchTerm" placeholder="Enter the URL" id="textboxid" name="url">
+          <button type="submit" class="searchButton" id="clicked" onclick="myFunction()">Submit</button>
+       </form>
+
+   </div>
+    <div class="show-data" >
+
+    </div>
+
+</body>
+</html>
+
